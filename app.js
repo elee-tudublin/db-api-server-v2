@@ -4,7 +4,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 
-const HOST = '0.0.0.0';
+const HOST = '127.0.0.1';
 const PORT = 8080;
 
 
@@ -23,9 +23,9 @@ app.use((req, res, next) => {
 app.use(cookieParser());
 
 // Allow app to support differnt body content types (using the bidyParser package)
-//app.use(bodyParser.text());
+app.use(bodyParser.text());
 app.use(bodyParser.json()); // support json encoded bodies
-// app.use(bodyParser.urlencoded({ extended: true })); // support url encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support url encoded bodies
 
 
 // cors
@@ -41,6 +41,8 @@ app.use('/', require('./controllers/index'));
 // route to /product
 app.use('/product', require('./controllers/productController'));
 
+app.use('/category', require('./controllers/categoryController'));
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -52,7 +54,7 @@ app.use(function (req, res, next) {
 // Start the HTTP server using HOST address and PORT consts defined above
 // Lssten for incoming connections
 var server = app.listen(PORT, HOST, function() {
-    console.log(`Express server listening on http://${HOST}:${PORT}`);
+    console.log(`Express server listening on http://localhost:${PORT}`);
 });
 
 // export this as a module, making the app object available when imported.

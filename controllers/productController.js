@@ -70,37 +70,29 @@ router.get('/bycat/:id', async (req, res) => {
 });
 
 
-/*
- *  These endpoints need to be implemented
- *
-*/
-
 // POST - Insert a new product.
-// This async function sends a HTTP post request
+// This async function sends a HTTP POST request
 router.post('/', async (req, res) => {
 
-    // the request body contains the new product values
-    let newProduct = req.body;
+    // the request body contains the new product values - copy it
+    const newProduct = req.body;
 
-    //console.log(newProduct);
+    // show what was copied in the console (server side)
+    console.log("productController: ", newProduct);
 
-    // If validation passed execute query and return results
-    // returns a single product with matching id
+    // Pass the new product data to the service and await the result
     try {
         // Send response with JSON result    
         result = await productService.createProduct(newProduct);
-        
-        if (result == null) {
-            result = "Product data failed validation";
-        }
 
+        // send a json response back to the client
         res.json(result);
 
+        // handle server (status 500) errors
         } catch (err) {
             res.status(500)
             res.send(err.message)
         }
-
 });
 
 // PUT update product
