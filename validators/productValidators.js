@@ -22,25 +22,26 @@ let validateNewProduct = (formProduct) => {
     // Validate form data for new product fields
     // Creating a product does not need a product id
     // Adding '' to the numeric values makes them strings for validation purposes ()
+    // appending + '' to numbers as the validator only works with strings
     if (
-        validator.isNumeric(formProduct.categoryId + '', { no_symbols: true, allow_negatives: false }) && 
-        !validator.isEmpty(formProduct.productName) && 
-        !validator.isEmpty(formProduct.productDescription) && 
-        validator.isNumeric(formProduct.productStock + '', { no_symbols: true, allow_negatives: false }) && 
-        validator.isCurrency(formProduct.productPrice + '', { no_symbols: true, allow_negatives: false }))
+        validator.isNumeric(formProduct.CategoryId + '', { no_symbols: true, allow_negatives: false }) && 
+        !validator.isEmpty(formProduct.ProductName) && 
+        !validator.isEmpty(formProduct.ProductDescription) && 
+        validator.isNumeric(formProduct.ProductStock + '', { no_symbols: true, allow_negatives: false }) && 
+        validator.isCurrency(formProduct.ProductPrice + '', { no_symbols: true, allow_negatives: false }))
     {
         // Validation passed
         // create a new Product instance based on Product model object
         // no value for product id (passed as null)
         validatedProduct = new Product(
                 null,
-                formProduct.categoryId,
+                formProduct.CategoryId,
 
                 // escape is to sanitize - it removes/ encodes any html tags
-                validator.escape(formProduct.productName),
-                validator.escape(formProduct.productDescription),
-                formProduct.productStock,
-                formProduct.productPrice
+                validator.escape(formProduct.ProductName),
+                validator.escape(formProduct.ProductDescription),
+                formProduct.ProductStock,
+                formProduct.ProductPrice
             );
     } else {
         // debug

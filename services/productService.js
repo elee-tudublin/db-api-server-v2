@@ -25,6 +25,7 @@ let getProductById = async (productId) => {
     let product;
 
     // Validate input - important as a bad input could crash the server or lead to an attack
+    // appending + '' to numbers as the validator only works with strings
     if (!validator.isNumeric(productId + '', { no_symbols: true })) {
         console.log("getProducts service error: invalid id parameter");
         return "invalid parameter";
@@ -44,6 +45,7 @@ let getProductByCatId = async (catId) => {
     let products;
 
     // Validate input - important as a bad input could crash the server or lead to an attack
+    // appending + '' to numbers as the validator only works with strings
     if (!validator.isNumeric(catId + '', { no_symbols: true })) {
         console.log("getProductsCatId service error: invalid id parameter");
         return "invalid parameter";

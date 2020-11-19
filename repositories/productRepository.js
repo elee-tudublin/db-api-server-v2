@@ -123,11 +123,11 @@ let createProduct = async (product) => {
 
             // set named parameter(s) in query
             // checks for potential sql injection
-            .input('categoryId', sql.Int, product.categoryId)    
-            .input('productName', sql.NVarChar, product.productName)
-            .input('productDescription', sql.NVarChar, product.productDescription)
-            .input('productStock', sql.Int,  product.productStock)
-            .input('productPrice', sql.Decimal, product.productPrice)
+            .input('categoryId', sql.Int, product.CategoryId)    
+            .input('productName', sql.NVarChar, product.ProductName)
+            .input('productDescription', sql.NVarChar, product.ProductDescription)
+            .input('productStock', sql.Int,  product.ProductStock)
+            .input('productPrice', sql.Decimal, product.ProductPrice)
 
             // Execute Query
             .query(SQL_INSERT);      
