@@ -3,7 +3,7 @@
 const validator = require('validator');
 
 // models
-const Product = require('../models/product.js');
+const Product = require('../models/Product.js');
 
 
 // Validate the body data, sent by the client, for a new product
